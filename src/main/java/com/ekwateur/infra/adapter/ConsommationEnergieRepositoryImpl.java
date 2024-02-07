@@ -11,8 +11,6 @@ public class ConsommationEnergieRepositoryImpl implements ConsommationEnergieRep
 
     @Override
     public Mono<BigDecimal> getConsommationEnergieMensuelle(String clientReference, EnergyType energyType, YearMonth month) {
-        // Ici, vous chercheriez dans votre base de données la consommation d'énergie mensuelle du client pour le type d'énergie donné
-        // Pour l'instant, je vais seulement retourner une valeur fictive
-        return Mono.just(BigDecimal.ZERO);
+         return Mono.just(BigDecimal.ZERO);
     }
 }
