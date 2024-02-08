@@ -3,7 +3,6 @@ package com.ekwateur.infra.mock;
 import com.ekwateur.domain.ChiffreAffaire;
 import com.ekwateur.domain.ClientInfo;
 import com.ekwateur.domain.ConsommationEnergie;
-import com.ekwateur.domain.enums.EnergyType;
 import reactor.core.publisher.Flux;
 
 import java.math.BigDecimal;

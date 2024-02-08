@@ -1,9 +1,5 @@
 package com.ekwateur.application.service;
 
-import com.ekwateur.application.port.out.ClientInfoRepository;
-import com.ekwateur.application.port.out.ConsommationEnergieRepository;
-import com.ekwateur.application.port.out.FinancialDataRepository;
-import com.ekwateur.application.port.out.TarifRepository;
 import com.ekwateur.domain.ClientInfo;
 import com.ekwateur.domain.enums.ClientType;
 import com.ekwateur.domain.enums.EnergyType;
