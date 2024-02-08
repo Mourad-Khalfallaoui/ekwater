@@ -1,10 +1,12 @@
 package com.ekwateur.infra.adapter;
 
-import com.ekwateur.application.port.out.ClientParticulierRepository;
+import com.ekwateur.application.port.out.ClientProRepository;
 import com.ekwateur.domain.Client;
+import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
-public class ClientProRepositoryImpl implements ClientParticulierRepository {
+@Repository
+public class ClientProRepositoryImpl implements ClientProRepository {
 
     @Override
     public Mono<Client> findByReference(String clientReference) {

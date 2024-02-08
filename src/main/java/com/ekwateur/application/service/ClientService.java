@@ -1,15 +1,20 @@
 package com.ekwateur.application.service;
 
 import com.ekwateur.application.port.in.ClientUseCase;
-import com.ekwateur.application.port.out.*;
+import com.ekwateur.application.port.out.ClientInfoRepository;
+import com.ekwateur.application.port.out.ConsommationEnergieRepository;
+import com.ekwateur.application.port.out.FinancialDataRepository;
+import com.ekwateur.application.port.out.TarifRepository;
 import com.ekwateur.domain.ClientInfo;
 import com.ekwateur.domain.enums.ClientType;
 import com.ekwateur.domain.enums.EnergyType;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
 import java.time.YearMonth;
 
+@Service
 public class ClientService implements ClientUseCase {
     private final ClientInfoRepository clientInfoRepository;
     private final TarifRepository tarifRepository;
@@ -27,12 +32,13 @@ public class ClientService implements ClientUseCase {
     }
 
     @Override
-    public Mono<BigDecimal> calculateEnergyUsage(String clientReference, EnergyType typeDEnergie, YearMonth month, int year) {
+    public Mono<BigDecimal> calculateEnergyUsage(String clientReference, EnergyType typeDEnergie, int month, int year) {
 
-        Mono<BigDecimal> tarif = getClientData(clientReference)
+        var tarif = getClientData(clientReference)
                 .flatMap(clientInfo -> getTarif(clientReference, typeDEnergie, year, clientInfo.clientType()));
 
-        Mono<BigDecimal> consommationMensuelle = getConsommationMensuelle(clientReference, typeDEnergie, month);
+        var yearMonth = YearMonth.of(year, month);
+        var consommationMensuelle = getConsommationMensuelle(clientReference, typeDEnergie, yearMonth);
 
         return Mono.zip(consommationMensuelle, tarif)
                 .map(data -> calculateUsage(data.getT1(), data.getT2()));
