@@ -2,6 +2,7 @@ package com.ekwateur.application.rest.tarif;
 
 import com.ekwateur.domain.port.in.ClientUseCase;
 import com.ekwateur.domain.enums.EnergyType;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -11,6 +12,7 @@ import reactor.core.publisher.Mono;
 import java.math.BigDecimal;
 import java.util.Map;
 
+@Slf4j
 @Component
 public class TarifHandler {
 
@@ -25,10 +27,10 @@ public class TarifHandler {
         var energy = request.pathVariable("energy");
         var month = Integer.parseInt(request.pathVariable("month"));
         var year = Integer.parseInt(request.pathVariable("year"));
+        log.info("#######################################################################################");
 
         Mono<BigDecimal> tarif = clientService
                 .calculateEnergyUsage(id, EnergyType.valueOf(energy.toUpperCase()), month, year);
-
         return tarif.flatMap(value ->
                         ServerResponse.ok().bodyValue(value))
                 .switchIfEmpty(ServerResponse
