@@ -12,10 +12,15 @@ import reactor.core.publisher.Mono;
 import java.math.BigDecimal;
 import java.util.Map;
 
+import static com.ekwateur.application.rest.tarif.TarifRouter.ERROR;
+
 @Slf4j
 @Component
 public class TarifHandler {
 
+    public static final String MESSAGE_NOT_FOUND = "Calcul de tarif non trouvé pour le client ou la période en entrée. " +
+            "Les references client doivent être dans l'intervalle [EKW00000000, EKW00000009]. " +
+            "Et la période O1/2024";
     private final TarifUseCase clientService;
 
     public TarifHandler(TarifUseCase clientService) {
@@ -35,10 +40,7 @@ public class TarifHandler {
                         ServerResponse.ok().bodyValue(value))
                 .switchIfEmpty(ServerResponse
                         .status(HttpStatus.NOT_FOUND)
-                        .bodyValue(
-                                Map.of("error", "Calcul de tarif non trouvé pour le client ou la période en entrée. " +
-                                        "Les references client doivent être dans l'intervalle [EKW00000000, EKW00000009]. " +
-                                        "Et la période O1/2024"))
+                        .bodyValue(Map.of(ERROR, MESSAGE_NOT_FOUND))
                 );
     }
 }
