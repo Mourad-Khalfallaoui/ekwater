@@ -34,25 +34,16 @@ public class TarifRouter {
     private Mono<ServerResponse> validateRequest(ServerRequest request, HandlerFunction<ServerResponse> next) {
         var isIdValid = isIdValid(request);
         if (!isIdValid)
-            return ServerResponse
-                .status(HttpStatus.BAD_REQUEST)
-                .bodyValue(
-                        Map.of(ERROR, MESSAGE_BAD_REQUEST_ID));
+            return badRequest(MESSAGE_BAD_REQUEST_ID);
 
         try {
             EnergyType.valueOf(request.pathVariable("energy").toUpperCase());
             Integer.parseInt(request.pathVariable("month"));
             Integer.parseInt(request.pathVariable("year"));
-        } catch (NumberFormatException e){
-            return ServerResponse
-                    .status(HttpStatus.BAD_REQUEST)
-                    .bodyValue(
-                            Map.of(ERROR, MESSAGE_BAD_REQUEST_MONTH_YEAR));
-        } catch (IllegalArgumentException e){
-            return ServerResponse
-                    .status(HttpStatus.BAD_REQUEST)
-                    .bodyValue(
-                            Map.of(ERROR, MESSAGE_BAD_REQUEST_ENERGY));
+        } catch (NumberFormatException e) {
+            return badRequest(MESSAGE_BAD_REQUEST_MONTH_YEAR);
+        } catch (IllegalArgumentException e) {
+            return badRequest(MESSAGE_BAD_REQUEST_ENERGY);
         }
 
         return next.handle(request);
@@ -63,5 +54,12 @@ public class TarifRouter {
         final Pattern pattern = Pattern.compile("EKW\\d\\d\\d\\d\\d\\d\\d\\d", Pattern.CASE_INSENSITIVE);
         final Matcher matcher = pattern.matcher(id);
         return matcher.matches();
+    }
+
+    private static Mono<ServerResponse> badRequest(String message) {
+        return ServerResponse
+                .status(HttpStatus.BAD_REQUEST)
+                .bodyValue(
+                        Map.of(ERROR, message));
     }
 }
