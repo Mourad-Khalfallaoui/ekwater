@@ -1,6 +1,6 @@
 package com.ekwateur.infra.adapter;
 
-import com.ekwateur.application.port.out.TarifRepository;
+import com.ekwateur.domain.port.out.TarifRepository;
 import com.ekwateur.domain.enums.ClientType;
 import com.ekwateur.domain.enums.EnergyType;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class TarifRepositoryImpl implements TarifRepository {
             }
         }
 
-        log.debug("Le tarif {} du client {} est : {}", energyType, typeClient, tarif);
+        log.info("Le tarif {} du client {} est : {}", energyType, typeClient, tarif);
         return Mono.just(BigDecimal.valueOf(tarif));
     }
 

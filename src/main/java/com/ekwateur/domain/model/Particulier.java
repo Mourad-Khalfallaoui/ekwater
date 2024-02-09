@@ -1,4 +1,4 @@
-package com.ekwateur.domain;
+package com.ekwateur.domain.model;
 
 
 import com.ekwateur.domain.enums.Civility;

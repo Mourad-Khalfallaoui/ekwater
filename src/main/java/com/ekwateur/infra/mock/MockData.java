@@ -1,8 +1,8 @@
 package com.ekwateur.infra.mock;
 
-import com.ekwateur.domain.ChiffreAffaire;
-import com.ekwateur.domain.ClientInfo;
-import com.ekwateur.domain.ConsommationEnergie;
+import com.ekwateur.domain.model.ChiffreAffaire;
+import com.ekwateur.domain.model.ClientInfo;
+import com.ekwateur.domain.model.ConsommationEnergie;
 import reactor.core.publisher.Flux;
 
 import java.math.BigDecimal;

@@ -1,6 +1,6 @@
-package com.ekwateur.application.port.out;
+package com.ekwateur.domain.port.out;
 
-import com.ekwateur.domain.ClientInfo;
+import com.ekwateur.domain.model.ClientInfo;
 import reactor.core.publisher.Mono;
 
 public interface ClientInfoRepository {

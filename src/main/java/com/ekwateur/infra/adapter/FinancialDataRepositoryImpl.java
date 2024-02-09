@@ -1,7 +1,7 @@
 package com.ekwateur.infra.adapter;
 
-import com.ekwateur.application.port.out.FinancialDataRepository;
-import com.ekwateur.domain.ChiffreAffaire;
+import com.ekwateur.domain.port.out.FinancialDataRepository;
+import com.ekwateur.domain.model.ChiffreAffaire;
 import com.ekwateur.infra.mock.MockData;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;

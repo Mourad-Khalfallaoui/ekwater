@@ -1,6 +1,6 @@
 package com.ekwateur.application.rest.tarif;
 
-import com.ekwateur.application.port.in.ClientUseCase;
+import com.ekwateur.domain.port.in.ClientUseCase;
 import com.ekwateur.domain.enums.EnergyType;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;

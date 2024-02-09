@@ -1,11 +1,11 @@
-package com.ekwateur.application.service;
+package com.ekwateur.domain.service;
 
-import com.ekwateur.application.port.in.ClientUseCase;
-import com.ekwateur.application.port.out.ClientInfoRepository;
-import com.ekwateur.application.port.out.ConsommationEnergieRepository;
-import com.ekwateur.application.port.out.FinancialDataRepository;
-import com.ekwateur.application.port.out.TarifRepository;
-import com.ekwateur.domain.ClientInfo;
+import com.ekwateur.domain.port.in.ClientUseCase;
+import com.ekwateur.domain.port.out.ClientInfoRepository;
+import com.ekwateur.domain.port.out.ConsommationEnergieRepository;
+import com.ekwateur.domain.port.out.FinancialDataRepository;
+import com.ekwateur.domain.port.out.TarifRepository;
+import com.ekwateur.domain.model.ClientInfo;
 import com.ekwateur.domain.enums.ClientType;
 import com.ekwateur.domain.enums.EnergyType;
 import org.springframework.stereotype.Service;
@@ -15,16 +15,16 @@ import java.math.BigDecimal;
 import java.time.YearMonth;
 
 @Service
-public class ClientService implements ClientUseCase {
+public class TarifService implements ClientUseCase {
     private final ClientInfoRepository clientInfoRepository;
     private final TarifRepository tarifRepository;
     private final ConsommationEnergieRepository consommationEnergieRepository;
     private final FinancialDataRepository financialDataRepository;
 
-    public ClientService(ClientInfoRepository clientInfoRepository,
-                         TarifRepository tarifRepository,
-                         ConsommationEnergieRepository consommationEnergieRepository,
-                         FinancialDataRepository financialDataRepository) {
+    public TarifService(ClientInfoRepository clientInfoRepository,
+                        TarifRepository tarifRepository,
+                        ConsommationEnergieRepository consommationEnergieRepository,
+                        FinancialDataRepository financialDataRepository) {
         this.clientInfoRepository = clientInfoRepository;
         this.tarifRepository = tarifRepository;
         this.consommationEnergieRepository = consommationEnergieRepository;

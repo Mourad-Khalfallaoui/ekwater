@@ -1,4 +1,4 @@
-package com.ekwateur.application.port.out;
+package com.ekwateur.domain.port.out;
 
 import reactor.core.publisher.Mono;
 

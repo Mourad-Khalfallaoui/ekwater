@@ -1,4 +1,4 @@
-package com.ekwateur.application.port.in;
+package com.ekwateur.domain.port.in;
 
 import com.ekwateur.domain.enums.EnergyType;
 import reactor.core.publisher.Mono;

@@ -1,4 +1,4 @@
-package com.ekwateur.domain;
+package com.ekwateur.domain.model;
 
 public interface Client {
     default double calculateEnergyUsage(double kwh, double tarif) {

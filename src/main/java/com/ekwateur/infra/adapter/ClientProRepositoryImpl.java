@@ -1,7 +1,7 @@
 package com.ekwateur.infra.adapter;
 
-import com.ekwateur.application.port.out.ClientProRepository;
-import com.ekwateur.domain.Client;
+import com.ekwateur.domain.port.out.ClientProRepository;
+import com.ekwateur.domain.model.Client;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 

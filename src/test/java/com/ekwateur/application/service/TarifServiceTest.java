@@ -1,8 +1,9 @@
 package com.ekwateur.application.service;
 
-import com.ekwateur.domain.ClientInfo;
+import com.ekwateur.domain.model.ClientInfo;
 import com.ekwateur.domain.enums.ClientType;
 import com.ekwateur.domain.enums.EnergyType;
+import com.ekwateur.domain.service.TarifService;
 import com.ekwateur.infra.adapter.ClientInfoRepositoryImpl;
 import com.ekwateur.infra.adapter.ConsommationEnergieRepositoryImpl;
 import com.ekwateur.infra.adapter.FinancialDataRepositoryImpl;
@@ -21,7 +22,7 @@ import java.time.YearMonth;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ClientServiceTest {
+public class TarifServiceTest {
 
     @Mock
     private ClientInfoRepositoryImpl clientInfoRepository;
@@ -36,7 +37,7 @@ public class ClientServiceTest {
     FinancialDataRepositoryImpl financialDataRepository;
 
     @InjectMocks
-    private ClientService clientService;
+    private TarifService tarifService;
 
     @Test
     public void testCalculateEnergyUsage() {
@@ -56,7 +57,7 @@ public class ClientServiceTest {
         when(tarifRepository.getTarif(energyType, clientType, chiffreAffaire)).thenReturn(Mono.just(tarif));
         when(consommationEnergieRepository.getConsommationEnergieMensuelle(clientRef, energyType, yearMonth)).thenReturn(Mono.just(consommationMensuelle));
 
-        Mono<BigDecimal> result = clientService.calculateEnergyUsage(clientRef, energyType, month, year);
+        Mono<BigDecimal> result = tarifService.calculateEnergyUsage(clientRef, energyType, month, year);
 
         StepVerifier.create(result)
                 .expectNextMatches(usage -> usage.equals(tarif.multiply(consommationMensuelle)))

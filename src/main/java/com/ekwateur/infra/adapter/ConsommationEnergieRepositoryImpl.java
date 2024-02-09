@@ -1,7 +1,7 @@
 package com.ekwateur.infra.adapter;
 
-import com.ekwateur.application.port.out.ConsommationEnergieRepository;
-import com.ekwateur.domain.ConsommationEnergie;
+import com.ekwateur.domain.port.out.ConsommationEnergieRepository;
+import com.ekwateur.domain.model.ConsommationEnergie;
 import com.ekwateur.domain.enums.EnergyType;
 import com.ekwateur.infra.mock.MockData;
 import org.springframework.stereotype.Repository;

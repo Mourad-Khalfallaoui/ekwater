@@ -1,7 +1,7 @@
 package com.ekwateur.infra.adapter;
 
-import com.ekwateur.application.port.out.ClientInfoRepository;
-import com.ekwateur.domain.ClientInfo;
+import com.ekwateur.domain.port.out.ClientInfoRepository;
+import com.ekwateur.domain.model.ClientInfo;
 import com.ekwateur.infra.mock.MockData;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
