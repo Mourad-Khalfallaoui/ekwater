@@ -1,6 +1,6 @@
 package com.ekwateur.application.rest.tarif;
 
-import com.ekwateur.domain.port.in.ClientUseCase;
+import com.ekwateur.domain.port.in.TarifUseCase;
 import com.ekwateur.domain.enums.EnergyType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -16,9 +16,9 @@ import java.util.Map;
 @Component
 public class TarifHandler {
 
-    private final ClientUseCase clientService;
+    private final TarifUseCase clientService;
 
-    public TarifHandler(ClientUseCase clientService) {
+    public TarifHandler(TarifUseCase clientService) {
         this.clientService = clientService;
     }
 

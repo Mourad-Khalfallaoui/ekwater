@@ -1,6 +1,6 @@
 package com.ekwateur.domain.service;
 
-import com.ekwateur.domain.port.in.ClientUseCase;
+import com.ekwateur.domain.port.in.TarifUseCase;
 import com.ekwateur.domain.port.out.ClientInfoRepository;
 import com.ekwateur.domain.port.out.ConsommationEnergieRepository;
 import com.ekwateur.domain.port.out.FinancialDataRepository;
@@ -17,7 +17,7 @@ import java.time.YearMonth;
 
 @Slf4j
 @Service
-public class TarifService implements ClientUseCase {
+public class TarifService implements TarifUseCase {
     private final ClientInfoRepository clientInfoRepository;
     private final TarifRepository tarifRepository;
     private final ConsommationEnergieRepository consommationEnergieRepository;
