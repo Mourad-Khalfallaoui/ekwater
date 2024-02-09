@@ -21,10 +21,10 @@ public class TarifHandler {
     }
 
     public Mono<ServerResponse> calculTarif(ServerRequest request) {
-        String id = request.pathVariable("id");
-        String energy = request.pathVariable("energy");
-        int month = Integer.parseInt(request.pathVariable("month"));
-        int year = Integer.parseInt(request.pathVariable("year"));
+        var id = request.pathVariable("id");
+        var energy = request.pathVariable("energy");
+        var month = Integer.parseInt(request.pathVariable("month"));
+        var year = Integer.parseInt(request.pathVariable("year"));
 
         Mono<BigDecimal> tarif = clientService
                 .calculateEnergyUsage(id, EnergyType.valueOf(energy.toUpperCase()), month, year);
@@ -35,7 +35,7 @@ public class TarifHandler {
                         .status(HttpStatus.NOT_FOUND)
                         .bodyValue(
                                 Map.of("error", "Calcul de tarif non trouvé pour le client ou la période en entrée. " +
-                                        "Les references client doivent être dans l'interval [EKW00000000, EKW00000009]. " +
+                                        "Les references client doivent être dans l'intervalle [EKW00000000, EKW00000009]. " +
                                         "Et la période O1/2024"))
                 );
     }

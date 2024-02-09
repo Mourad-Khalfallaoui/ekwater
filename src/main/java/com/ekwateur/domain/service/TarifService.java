@@ -8,12 +8,14 @@ import com.ekwateur.domain.port.out.TarifRepository;
 import com.ekwateur.domain.model.ClientInfo;
 import com.ekwateur.domain.enums.ClientType;
 import com.ekwateur.domain.enums.EnergyType;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
 import java.time.YearMonth;
 
+@Slf4j
 @Service
 public class TarifService implements ClientUseCase {
     private final ClientInfoRepository clientInfoRepository;
@@ -39,6 +41,7 @@ public class TarifService implements ClientUseCase {
 
         var yearMonth = YearMonth.of(year, month);
         var consommationMensuelle = getConsommationMensuelle(clientReference, typeDEnergie, yearMonth);
+
 
         return Mono.zip(consommationMensuelle, tarif)
                 .map(data -> calculateUsage(data.getT1(), data.getT2()));
