@@ -8,6 +8,7 @@ import com.ekwateur.domain.port.out.TarifRepository;
 import com.ekwateur.domain.model.ClientInfo;
 import com.ekwateur.domain.enums.ClientType;
 import com.ekwateur.domain.enums.EnergyType;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -17,21 +18,12 @@ import java.time.YearMonth;
 
 @Slf4j
 @Service
+@AllArgsConstructor
 public class TarifService implements TarifUseCase {
     private final ClientInfoRepository clientInfoRepository;
     private final TarifRepository tarifRepository;
     private final ConsommationEnergieRepository consommationEnergieRepository;
     private final FinancialDataRepository financialDataRepository;
-
-    public TarifService(ClientInfoRepository clientInfoRepository,
-                        TarifRepository tarifRepository,
-                        ConsommationEnergieRepository consommationEnergieRepository,
-                        FinancialDataRepository financialDataRepository) {
-        this.clientInfoRepository = clientInfoRepository;
-        this.tarifRepository = tarifRepository;
-        this.consommationEnergieRepository = consommationEnergieRepository;
-        this.financialDataRepository = financialDataRepository;
-    }
 
     @Override
     public Mono<BigDecimal> calculateEnergyUsage(String clientReference, EnergyType typeDEnergie, int month, int year) {
